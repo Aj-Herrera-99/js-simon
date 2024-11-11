@@ -13,7 +13,6 @@ const timer = document.getElementById("countdown");
 const numbersList = document.getElementById("numbers-list");
 const form = document.getElementById("answers-form");
 const memorized = form.querySelectorAll("input");
-const confirmBtn = document.querySelector(".btn");
 const message = document.getElementById("message");
 // other variables
 const count = 5;
@@ -44,7 +43,7 @@ const clock = setInterval(() => {
     }
 }, 1000);
 // event listeners
-confirmBtn.addEventListener("click", handleMemorized);
+form.addEventListener("submit", handleMemorized);
 // event handlers
 function handleMemorized(e){
     e.preventDefault();
