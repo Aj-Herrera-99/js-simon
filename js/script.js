@@ -34,5 +34,7 @@ const clock = setInterval(() => {
     if(initialTimer <= 0){
         clearInterval(clock);
         timer.innerHTML = "Time Is Up!"
+        numbersList.classList.toggle("d-none");
+        form.classList.toggle("d-none");
     }
 }, 1000);
