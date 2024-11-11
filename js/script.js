@@ -38,3 +38,14 @@ const clock = setInterval(() => {
         form.classList.toggle("d-none");
     }
 }, 1000);
+// event listeners
+confirmBtn.addEventListener("click", handleMemorized);
+// event handlers
+function handleMemorized(e){
+    e.preventDefault();
+    for(let n of memorized){
+        if(arrNumbers.includes(parseInt(n.value))){
+            message.innerHTML += n.value;
+        }
+    }
+}
