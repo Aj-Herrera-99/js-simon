@@ -19,8 +19,10 @@ const message = document.getElementById("message");
 const count = 5;
 // creation of li containing random numbers to memorized
 let template = "";
+const arrNumbers = [];
 for(let i=0; i<count; i++){
     const rnd = getRndInteger(1, 50);
+    arrNumbers.push(rnd);
     template += `<li>${rnd}</li>`
 }
 numbersList.innerHTML = template;
