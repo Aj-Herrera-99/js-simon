@@ -48,6 +48,7 @@ confirmBtn.addEventListener("click", handleMemorized);
 // event handlers
 function handleMemorized(e){
     e.preventDefault();
+    let randomNumbers = "";
     let output = "";
     let count = 0;
     for(let n of memorized){
@@ -56,5 +57,11 @@ function handleMemorized(e){
             count++;
         }
     }
-    message.innerHTML = `Hai memorizzato ${count} numeri: ${output}`;
+    message.innerHTML = ` `;
+    for(let value of arrNumbers){
+        randomNumbers += value + " ";
+    }
+    message.innerHTML += `I numeri da memorizzare erano: ${randomNumbers}<br>
+    Hai memorizzato i numeri: ${output}<br>
+    Totale memorizzati: ${count}`;
 }
