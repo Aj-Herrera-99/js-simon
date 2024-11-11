@@ -20,71 +20,79 @@ console.log(resetBtn);
 const message = document.getElementById("message");
 // other variables
 const count = 5;
+
 // creation of li containing random numbers to memorized
 let template = "";
 const arrNumbers = [];
-for(let i=0; i<count; i++){
+for (let i = 0; i < count; i++) {
     let rnd = getRndInteger(1, 50);
-    let count=0;
-    while(arrNumbers.includes(rnd) && count < 10000){
+    let count = 0;
+    while (arrNumbers.includes(rnd) && count < 10000) {
         rnd = getRndInteger(1, 50);
         count++;
     }
     arrNumbers.push(rnd);
-    template += `<li>${rnd}</li>`
+    template += `<li>${rnd}</li>`;
 }
 numbersList.innerHTML = template;
+
 // countdown
 let initialTimer = 3;
 timer.innerHTML = initialTimer;
 const clock = setInterval(() => {
     timer.innerHTML = --initialTimer;
-    if(initialTimer <= 0){
+    if (initialTimer <= 0) {
         clearInterval(clock);
-        timer.innerHTML = "Time Is Up!"
+        timer.innerHTML = "Time Is Up!";
         numbersList.classList.toggle("d-none");
         form.classList.toggle("d-none");
     }
 }, 1000);
-// event listeners
-//? check inputs duplicates
-for(const input of memorized){
-    input.addEventListener("change", () => handleDuplicates(input));
+
+//* event listeners
+for (const input of memorized) {
+    input.addEventListener("change", () => handleDuplicates(input)); //? check inputs duplicates
 }
 form.addEventListener("submit", handleMemorized);
-form.addEventListener("reset", () => {location.reload()});
-// event handlers
-function handleMemorized(e){
+form.addEventListener("reset", () => {
+    location.reload();
+});
+
+//* event handlers
+function handleDuplicates(currentInput) {
+    for (const otherInputs of memorized) {
+        if (currentInput !== otherInputs) {
+            if (
+                currentInput.value !== "" &&
+                currentInput.value === otherInputs.value
+            ) {
+                alert("You cannot type same numbers!!");
+                currentInput.value = "";
+            }
+        }
+    }
+}
+
+function handleMemorized(e) {
     e.preventDefault();
     let randomNumbers = "";
     let output = "";
     let count = 0;
     // insert in output only memorized numbers and increment a counter
-    for(let n of memorized){
-        if(arrNumbers.includes(parseInt(n.value))){
+    for (let n of memorized) {
+        if (arrNumbers.includes(parseInt(n.value))) {
             output += n.value + " ";
             count++;
         }
     }
     // output message
     message.innerHTML = ` `;
-    for(let value of arrNumbers){
+    for (let value of arrNumbers) {
         randomNumbers += value + " ";
     }
     message.innerHTML += `I numeri da memorizzare erano: ${randomNumbers}<br>
     Hai memorizzato i numeri: ${output}<br>
     Totale memorizzati: ${count}`;
     confirmBtn.classList.toggle("d-none");
-    resetBtn.classList.toggle("d-none");    
-}
-
-function handleDuplicates(currentInput){
-    for(const otherInputs of memorized){
-        if(currentInput !== otherInputs){
-            if(currentInput.value !== "" && currentInput.value === otherInputs.value){
-                alert("You cannot type same numbers!!")
-                currentInput.value = "";
-            }
-        }
-    }
+    resetBtn.classList.toggle("d-none");
 }
