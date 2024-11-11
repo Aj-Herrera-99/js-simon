@@ -1,1 +1,1 @@
-# js-simon
+# ex-js-simon-says-dom
