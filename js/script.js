@@ -46,20 +46,11 @@ const clock = setInterval(() => {
         form.classList.toggle("d-none");
     }
 }, 1000);
-// check inputs duplicates
-for(const input of memorized){
-    input.addEventListener("change", () => {
-        for(const otherInputs of memorized){
-            if(input !== otherInputs){
-                if(input.value !== "" && input.value === otherInputs.value){
-                    alert("You cannot type same numbers!!")
-                    input.value = "";
-                }
-            }
-        }
-    });
-}
 // event listeners
+//? check inputs duplicates
+for(const input of memorized){
+    input.addEventListener("change", () => handleDuplicates(input));
+}
 form.addEventListener("submit", handleMemorized);
 form.addEventListener("reset", () => {location.reload()});
 // event handlers
@@ -85,4 +76,15 @@ function handleMemorized(e){
     Totale memorizzati: ${count}`;
     confirmBtn.classList.toggle("d-none");
     resetBtn.classList.toggle("d-none");    
+}
+
+function handleDuplicates(currentInput){
+    for(const otherInputs of memorized){
+        if(currentInput !== otherInputs){
+            if(currentInput.value !== "" && currentInput.value === otherInputs.value){
+                alert("You cannot type same numbers!!")
+                currentInput.value = "";
+            }
+        }
+    }
 }
