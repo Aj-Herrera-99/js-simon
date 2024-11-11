@@ -15,3 +15,12 @@ const form = document.getElementById("answers-form");
 const memorized = form.querySelectorAll("input");
 const confirmBtn = document.querySelector(".btn");
 const message = document.getElementById("message");
+// other variables
+const count = 5;
+// creation of li containing random numbers to memorized
+let template = "";
+for(let i=0; i<count; i++){
+    const rnd = getRndInteger(1, 50);
+    template += `<li>${rnd}</li>`
+}
+numbersList.innerHTML = template;
