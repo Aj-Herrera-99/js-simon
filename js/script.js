@@ -21,7 +21,12 @@ const count = 5;
 let template = "";
 const arrNumbers = [];
 for(let i=0; i<count; i++){
-    const rnd = getRndInteger(1, 50);
+    let rnd = getRndInteger(1, 50);
+    let count=0;
+    while(arrNumbers.includes(rnd) && count < 10000){
+        rnd = getRndInteger(1, 50);
+        count++;
+    }
     arrNumbers.push(rnd);
     template += `<li>${rnd}</li>`
 }
@@ -43,9 +48,13 @@ confirmBtn.addEventListener("click", handleMemorized);
 // event handlers
 function handleMemorized(e){
     e.preventDefault();
+    let output = "";
+    let count = 0;
     for(let n of memorized){
         if(arrNumbers.includes(parseInt(n.value))){
-            message.innerHTML += n.value;
+            output += n.value + " ";
+            count++;
         }
     }
+    message.innerHTML = `Hai memorizzato ${count} numeri: ${output}`;
 }
