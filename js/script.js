@@ -13,6 +13,10 @@ const timer = document.getElementById("countdown");
 const numbersList = document.getElementById("numbers-list");
 const form = document.getElementById("answers-form");
 const memorized = form.querySelectorAll("input");
+const confirmBtn = document.querySelector(".btn");
+console.log(confirmBtn);
+const resetBtn = document.querySelector(".btn.reset");
+console.log(resetBtn);
 const message = document.getElementById("message");
 // other variables
 const count = 5;
@@ -44,6 +48,7 @@ const clock = setInterval(() => {
 }, 1000);
 // event listeners
 form.addEventListener("submit", handleMemorized);
+form.addEventListener("reset", () => {location.reload()});
 // event handlers
 function handleMemorized(e){
     e.preventDefault();
@@ -63,4 +68,6 @@ function handleMemorized(e){
     message.innerHTML += `I numeri da memorizzare erano: ${randomNumbers}<br>
     Hai memorizzato i numeri: ${output}<br>
     Totale memorizzati: ${count}`;
+    confirmBtn.classList.toggle("d-none");
+    resetBtn.classList.toggle("d-none");    
 }
