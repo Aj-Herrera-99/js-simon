@@ -14,16 +14,15 @@ const numbersList = document.getElementById("numbers-list");
 const form = document.getElementById("answers-form");
 const memorized = form.querySelectorAll("input");
 const confirmBtn = document.querySelector(".btn");
-console.log(confirmBtn);
 const resetBtn = document.querySelector(".btn.reset");
-console.log(resetBtn);
 const message = document.getElementById("message");
 // other variables
 const count = 5;
+const arrNumbers = [];
+let template = "";
+let initialTimer = 3;
 
 // creation of li containing random numbers to memorized
-let template = "";
-const arrNumbers = [];
 for (let i = 0; i < count; i++) {
     let rnd = getRndInteger(1, 50);
     let count = 0;
@@ -37,7 +36,6 @@ for (let i = 0; i < count; i++) {
 numbersList.innerHTML = template;
 
 // countdown
-let initialTimer = 3;
 timer.innerHTML = initialTimer;
 const clock = setInterval(() => {
     timer.innerHTML = --initialTimer;
