@@ -46,6 +46,19 @@ const clock = setInterval(() => {
         form.classList.toggle("d-none");
     }
 }, 1000);
+// check inputs duplicates
+for(const input of memorized){
+    input.addEventListener("change", () => {
+        for(const otherInputs of memorized){
+            if(input !== otherInputs){
+                if(input.value !== "" && input.value === otherInputs.value){
+                    alert("You cannot type same numbers!!")
+                    input.value = "";
+                }
+            }
+        }
+    });
+}
 // event listeners
 form.addEventListener("submit", handleMemorized);
 form.addEventListener("reset", () => {location.reload()});
@@ -55,12 +68,14 @@ function handleMemorized(e){
     let randomNumbers = "";
     let output = "";
     let count = 0;
+    // insert in output only memorized numbers and increment a counter
     for(let n of memorized){
         if(arrNumbers.includes(parseInt(n.value))){
             output += n.value + " ";
             count++;
         }
     }
+    // output message
     message.innerHTML = ` `;
     for(let value of arrNumbers){
         randomNumbers += value + " ";
