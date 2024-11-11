@@ -9,7 +9,7 @@ quali dei numeri da indovinare sono stati individuati.
  */
 
 // DOM elements selection
-const timer = document.getElementById("instructions");
+const timer = document.getElementById("countdown");
 const numbersList = document.getElementById("numbers-list");
 const form = document.getElementById("answers-form");
 const memorized = form.querySelectorAll("input");
@@ -24,3 +24,13 @@ for(let i=0; i<count; i++){
     template += `<li>${rnd}</li>`
 }
 numbersList.innerHTML = template;
+// countdown
+let initialTimer = 3;
+timer.innerHTML = initialTimer;
+const clock = setInterval(() => {
+    timer.innerHTML = --initialTimer;
+    if(initialTimer <= 0){
+        clearInterval(clock);
+        timer.innerHTML = "Time Is Up!"
+    }
+}, 1000);
